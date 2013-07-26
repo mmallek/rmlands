@@ -53,39 +53,26 @@ IF [cover = SMC][modifier = U][condition = LDO][condage >= 50]
 
 ===============================================================
 //SMC, Early Development
+
+IF [cover = SMC][modifier = M][condition = ED][age >= 20][age = 40]
+     THEN [condition = MDC]
+          USE [prob = 0.67]
+     ELSE [condition = MDO]
+          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
+
 IF [cover = SMC][modifier = M][condition = ED][age >= 20][age < 40]
-     THEN [condition = Mid]
-          USE [prob = 0.8]
-               IF [condition = Mid]
-                    THEN [condition = MDC]
-                         USE [prob = 0.333333]
-                    ELSE [condition = MDO];
-IF [cover = SMC][modifier = M][condition = ED][age = 40]
-     THEN [condition = Mid]
-          USE [prob = 1]
-               IF [condition = Mid]
-                    THEN [condition = MDC]
-                         USE [prob = 0.333333]
-                    ELSE [condition = MDO];
-//////////////////////////////////////////////////////////////////////
-IF [cover = SMC][modifier = M][condition = ED][age >= 20][age < 40]
-     IF drand48() < 0.8
-          IF drand48() < 0.666666
-               THEN [condition = MDC]
-          ELSE IF drand48() > 0.666666
-               THEN [condition = MDO]
-IF [cover = SMC][modifier = M][condition = ED][age = 40]
-     IF drand48() < 0.666666
-          THEN [condition = MDC]
-     ELSE IF drand48() > 0.666666
-          THEN [condition = MDO]
-          
+     THEN [condition = MDC]
+          USE [prob = 0.5]
+     ELSE [condition = MDO]
+          USE [prob = 0.3]; //note, sum of probs = 0.8, thus 0.2 prob stays ED
+
 IF [cover = SMC][modifier = X][condition = ED][age >= 40][age < 80]
     THEN [condition = MDO]
           USE [prob = 0.4];
 IF [cover = SMC][modifier = X][condition = ED][age = 80]
     THEN [condition = MDO]
-          USE [prob = 1];          
+          USE [prob = 1];
+
 IF [cover = SMC][modifier = U][condition = ED][age >= 80][age < 150]
     THEN [condition = MDO]
           USE [prob = 0.2];
@@ -94,55 +81,39 @@ IF [cover = SMC][modifier = U][condition = ED][age = 150]
           USE [prob = 1];   
 
 // SMC, Mid Development Open
-// I originally wanted a patch to be able to undergo succession twice - to separate
-// succession from open to closed from succession from mid to late. This might be
-// unnecssarily complicated. In which case we do need to decide what order to go in:
-// should open/closed > mid/late or the other way around?
 
+IF [cover = SMC][modifier = M][condition = MDO][stageage = 150]
+     THEN [condition = LDO]
+          USE [prob = 1];
+IF [cover = SMC][modifier = M][condition = MDO][stageage >= 100][stageage < 150]
+     THEN [condition = LDO]
+          USE [prob = 0.6];
 IF [cover = SMC][modifier = M][condition = MDO][condage >= 30][agewfirel >= 30]
      THEN [condition = MDC]
           USE [prob = 0.9];
-IF [cover = SMC][modifier = M][condition = MDO][**condage >= 100][**condage < 150]
-     THEN [condition = LDO]
-          USE [prob = 0.6];
-IF [cover = SMC][modifier = M][condition = MDO][**condage = 150]
-     THEN [condition = LDO]
-          USE [prob = 1];
-///////////////////////////////////////////////////////////////////////////////////
-IF [cover = SMC][modifier = M][condition = MDO][condage >= 30][agewfirel >= 30]
-     IF drand48() < 0.9
-          THEN [condition = MDC]
-     ELSE IF [cover = SMC][modifier = M][condition = MDO][**condage >= 100][**condage < 150]
-          THEN [condition = LDO]
-               USE [prob = 0.6]
-     ELSE IF [cover = SMC][modifier = M][condition = MDO][**condage = 150]          
-          THEN [condition = LDO]
-               USE [prob = 1];
-IF [cover = SMC][modifier = M][condition = MDO][**condage >= 100][**condage < 150]
-     THEN [condition = LDO]
-          USE [prob = 0.6];
-IF [cover = SMC][modifier = M][condition = MDO][**condage = 150]
+       
+
+IF [cover = SMC][modifier = X][condition = MDO][stageage = 200]
      THEN [condition = LDO]
           USE [prob = 1];
-//////////////////////////////////////////////////////////////////////////////////////
+IF [cover = SMC][modifier = X][condition = MDO][stageage >= 160][stageage < 200]
+     THEN [condition = LDO]
+          USE [prob = 0.4];
 IF [cover = SMC][modifier = X][condition = MDO][condage >= 80][agewfirel > 80]
      THEN [condition = MDC]
           USE [prob = 0.3];
-IF [cover = SMC][modifier = X][condition = MDO][**condage >= 160][**condage < 200]
-     THEN [condition = LDO]
-          USE [prob = 0.4];
-IF [cover = SMC][modifier = X][condition = MDO][**condage = 200]
+
+IF [cover = SMC][modifier = U][condition = MDO][stageage = 260]
      THEN [condition = LDO]
           USE [prob = 1];
+IF [cover = SMC][modifier = U][condition = MDO][stageage >= 200][stageage < 260]
+     THEN [condition = LDO]
+          USE [prob = 0.4];
 IF [cover = SMC][modifier = U][condition = MDO][condage >= 80][agewfirel > 80]
      THEN [condition = MDC]
           USE [prob = 0.1];
-IF [cover = SMC][modifier = U][condition = MDO][**condage >= 200][**condage < 260]
-     THEN [condition = LDO]
-          USE [prob = 0.4];
-IF [cover = SMC][modifier = U][condition = MDO][**condage = 260]
-     THEN [condition = LDO]
-          USE [prob = 1];
+
+
 
 // SMC, Mid Development Closed
 IF [cover = SMC][modifier = M][condition = MDC][**condage >= 100][**condage < 150]
