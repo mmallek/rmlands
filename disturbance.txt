@@ -6,7 +6,7 @@ DEFINE mtpb_null [mtpbmort = null][agemtpbh = null][agemtpbl = null][agemtpb = n
 DEFINE dfbb_null [dfbbmort = null][agedfbbh = null][agedfbbl = null][agedfbb = null];
 DEFINE sbb_null [sbbmort = null][agesbbh = null][agesbbl = null][agesbb = null];
 DEFINE sbud_null [sbudmort = null][agesbudh = null][agesbudl = null][agesbud = null];
-//DEFINE wfire_null [wfiremort = null][agewfireh = null][agewfirel = null][agewfire = null];
+DEFINE wfire_null [wfiremort = null][agewfireh = null][agewfirel = null][agewfire = null];
 
 <wildfire>
 //doug fir tan oak
