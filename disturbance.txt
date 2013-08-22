@@ -9,18 +9,59 @@ DEFINE sbud_null [sbudmort = null][agesbudh = null][agesbudl = null][agesbud = n
 DEFINE wfire_null [wfiremort = null][agewfireh = null][agewfirel = null][agewfire = null];
 
 <wildfire>
-//doug fir tan oak
+// curl-leaf mountain mahogany
+IF [cover = CMM][condition = EARLY_ALL|MID_CL|MID_OP|LATE_ALL][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
+IF [cover = CMM][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][condage = 0]
+          USE [prob = 0.286]
+
+// doug fir tan oak
 IF [cover = DFTO][condition = EARLY_ALL|MID_ALL|LATE_ALL][agewfireh = 0]
      THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
-//doug fir tan oak - ultramafic
+
+// doug fir tan oak - ultramafic
 IF [cover = DFTOU][condition = EARLY_ALL|MID_ALL|LATE_ALL][agewfireh = 0]
      THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
+
+// lodgepole pine
+IF [cover = LPN][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
+IF [cover = LPN][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][condage = 0];
+
+// lodgepole with aspen
+IF [cover = LPN_ASP][condition = EARLY_ASP|MID_ASP|MID_AC|LATE_CL|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP][age = 0][condage = 0][stageage = 0];
+IF [cover = LPN_ASP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_CA][condage = 0]
+          USE [prob = 0.15];
+
+// black and low sagebrush
+IF [cover = LSG][condition = EARLY_ALL|MID_ALL|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
+
+//montane hardwood
+IF [cover = MHW][condition = EARLY_ALL|MID_ALL|LATE_ALL][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+
+//montane riparian
+IF [cover = MRIP][condition = EARLY_ALL|MID_ALL|LATE_ALL][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0]; 
+
+//oak woodland
+IF [cover = OAK][condition = EARLY_ALL|MID_ALL|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
+IF [cover = OAK][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_OP][stageage = 0];
+
 // oak-conifer forest and woodland
 IF [cover = OCFW][condition = EARLY_ALL|MID_CL|MID_OP|LATE_ALL][agewfireh = 0]
      THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
 IF [cover = OCFW][condition = MID_CL][agewfirel = 0]
      THEN [condition = MID_OP][condage = 0]
           USE [prob = 0.127];
+
 // oak-conifer forest and woodland - ultramafic
 IF [cover = OCFWU][condition = EARLY_ALL|MID_CL|MID_OP|LATE_ALL][agewfireh = 0]
      THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];
@@ -28,6 +69,114 @@ IF [cover = OCFWU][condition = MID_CL][agewfirel = 0]
      THEN [condition = MID_OP][condage = 0]
           USE [prob = 0.3];
 
+// red fir - mesic
+IF [cover = RFR_M][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = RFR_M][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.667];
+IF [cover = RFR_M][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.5];
+
+// red fir - xeric
+IF [cover = RFR_X][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = RFR_X][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.667];
+IF [cover = RFR_X][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.5];
+
+// red fir - ultramafic
+IF [cover = RFR_U][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = RFR_U][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.074];
+IF [cover = RFR_U][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.074];
+
+// red fir - aspen
+IF [cover = RFR_ASP][condition = EARLY_ASP|MID_ASP|MID_AC|LATE_CL|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP][age = 0][condage = 0][stageage = 0];
+IF [cover = RFR_ASP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_CA][condage = 0]
+          USE [prob = 0.15];
+
+// big sagebrush
+IF [cover = SAGE][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+
+// subalpine conifer
+IF [cover = SCN][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = SCN][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+
+// subalpine conifer - aspen     
+IF [cover = SCN_ASP][condition = EARLY_ASP|MID_ASP|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP][age = 0][condage = 0][stageage = 0];
+
+// sierran mixed conifer - mesic
+IF [cover = SMC_M][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = SMC_M][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.413];
+IF [cover = SMC_M][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.299];
+
+// sierran mixed conifer - xeric
+IF [cover = SMC_X][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = SMC_X][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.514];
+IF [cover = SMC_X][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.076];
+
+// sierran mixed conifer - ultramafic
+IF [cover = SMC_U][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = SMC_U][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.074];
+IF [cover = SMC_U][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.074];
+
+// sierran mixed conifer - aspen
+IF [cover = SMC_ASP][condition = EARLY_ASP|MID_ASP|MID_AC|LATE_CL|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP][age = 0][condage = 0][stageage = 0];
+IF [cover = SMC_ASP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_CA][condage = 0]
+          USE [prob = 0.15];
+
+// western white pine
+IF [cover = WWP][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = WWP][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.8];
+IF [cover = WWP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.8];
+
+// yellow pine
+IF [cover = YPN][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL][age = 0][condage = 0][stageage = 0];     
+IF [cover = YPN][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP][stageage = 0]
+          USE [prob = 0.5];
+
+// yellow pine - aspen
+IF [cover = YPN_ASP][condition = EARLY_ASP|MID_ASP|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP][age = 0][condage = 0][stageage = 0];
 
 
 
