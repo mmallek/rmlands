@@ -1,665 +1,698 @@
 <succession>
-//sierran mixed conifer - mesic
+
+//CMM: curl-leaf mountain mahogany
 
 //ED
-IF [cover = SMCM][condition = ED][age = 40]
-     THEN [condition = MDC]
-          USE [prob = 0.67]
-     OR [condition = MDO]
-          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
-
-IF [cover = SMCM][condition = ED][age >= 20][age < 40]
-     THEN [condition = MDC]
-          USE [prob = 0.5]
-     OR [condition = MDO]
-          USE [prob = 0.3]; //note, sum of probs = 0.8, thus 0.2 prob stays ED
+IF [cover = [CMM][condition = EARLY_ALL][age = 20]
+     THEN [condition = MID_OP]
+          USE [prob = 1];
 
 //MDO
-IF [cover = SMCM][condition = MDO][stageage = 150]
-     THEN [condition = LDO]
+IF [cover = [CMM][condition = MID_OP][stageage = 120]
+     THEN [condition = LATE_ALL]
           USE [prob = 1];
-IF [cover = SMCM][condition = MDO][stageage >= 100][stageage < 150]
-     THEN [condition = LDO]
-          USE [prob = 0.6];
-IF [cover = SMCM][condition = MDO][condage >= 30][agewfirel >= 30]
-     THEN [condition = MDC]
-          USE [prob = 0.9];
+IF [cover = [CMM][condition = MID_OP][condage >= 40][agewfirel >= 40]
+     THEN [condition = MID_CL]
+          USE [prob = 1];
 
 //MDC
-IF [cover = SMCM][condition = MDC][stageage = 150]
-     THEN [condition = LDO]
+IF [cover = [CMM][condition = MID_CL][stageage = 120]
+     THEN [condition = LATE_ALL]
           USE [prob = 1];
 
-IF [cover = SMCM][condition = MDC][stageage >= 100][stageage < 150]
-     THEN [condition = LDO]
-          USE [prob = 0.6];
-       
-//LDO
-IF [cover = SMCM][condition = LDO][condage >= 30][agewfirel >= 30]
-     THEN [condition = LDC]
-          USE [prob = 0.9];
-
-
-//sierran mixed conifer - xeric
+//DFTO: doug fir - tanoak
 
 //ED
-IF [cover = SMCX][condition = ED][age = 80]
-    THEN [condition = MDO]
+IF [cover = DFTO][condition = EARLY_ALL][condage = 40]
+     THEN [condition = MID_ALL]
           USE [prob = 1];
-IF [cover = SMCX][condition = ED][age >= 40][age < 80]
-    THEN [condition = MDO]
-          USE [prob = 0.4];
-
-//MDO
-IF [cover = SMCX][condition = MDO][stageage = 200]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = SMCX][condition = MDO][stageage >= 160][stageage < 200]
-     THEN [condition = LDO]
-          USE [prob = 0.4];
-IF [cover = SMCX][condition = MDO][condage >= 80][agewfirel >= 80]
-     THEN [condition = MDC]
-          USE [prob = 0.3];
-
-//MDC
-IF [cover = SMCX][condition = MDC][stageage >= 160][stageage < 200]
-     THEN [condition = LDO]
-          USE [prob = 0.4];
-IF [cover = SMCX][condition = MDC][stageage = 200]
-     THEN [condition = LDO]
-          USE [prob = 1];
-
-//LDO
-IF [cover = SMCX][condition = LDO][condage >= 40][agewfirel >= 40]
-     THEN [condition = MDC]
-          USE [prob = 0.6];
-
-
-//sierran mixed conifer - ultramafic
-
-//ED
-IF [cover = SMCU][condition = ED][age = 150]
-    THEN [condition = MDO]
-          USE [prob = 1]; 
-IF [cover = SMCU][condition = ED][age >= 80][age < 150]
-    THEN [condition = MDO]
-          USE [prob = 0.2];
-
-//MDO
-IF [cover = SMCU][condition = MDO][stageage = 260]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = SMCU][condition = MDO][stageage >= 200][stageage < 260]
-     THEN [condition = LDO]
-          USE [prob = 0.4];
-IF [cover = SMCU][condition = MDO][condage >= 80][agewfirel >= 80]
-     THEN [condition = MDC]
-          USE [prob = 0.1];
-
-//MDC
-IF [cover = SMCU][condition = MDC][stageage = 260]
-     THEN [condition = LDO]
-          USE [prob = 1];
-
-IF [cover = SMCU][condition = MDC][stageage >= 200][stageage < 260]
-     THEN [condition = LDO]
-          USE [prob = 0.4];
-
-//LDO
-IF [cover = SMCU][condition = LDO][condage >= 50][agewfirel >= 50]
-     THEN [condition = MDC]
-          USE [prob = 0.2];
-
-//sierran mixed conifer + aspen
-
-//EDA
-IF [cover = SMC_ASP][condition = EDA][age = 10]
-    THEN [condition = MDA]
-          USE [prob = 1]; 
-
-//MDA
-IF [cover = SMC_ASP][condition = MDA][stageage = 100]
-    THEN [condition = MDAC]
-          USE [prob = 1]; 
-IF [cover = SMC_ASP][condition = MDA][stageage >= 50][stageage < 100]
-    THEN [condition = MDAC]
-          USE [prob = 0.6];
-
-//MDAC
-IF [cover = SMC_ASP][condition = MDAC][stageage = 100]
-    THEN [condition = LDC]
-          USE [prob = 1]; 
-
-//LDCA
-IF [cover = SMC_ASP][condition = LDCA][stageage = 70]
-    THEN [condition = LDC]
-          USE [prob = 1]; 
-
-
-//lodgepole pine
-
-//ED
-IF [cover = LPN][condition = ED][age = 40]
-    THEN [condition = MDC]
-          USE [prob = 1];
-IF [cover = LPN][condition = ED][age >= 10][age < 40]
-    THEN [condition = MDC]
-          USE [prob = 0.6];
-
-//MDO
-IF [cover = LPN][condition = MDO][stageage = 100]
-    THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = LPN][condition = MDO][stageage >= 50][stageage < 100]
-    THEN [condition = LDO]
-          USE [prob = 0.5];
-IF [cover = LPN][condition = MDO][condage >= 20][agewfirel >= 20]
-    THEN [condition = MDC]
-          USE [prob = 0.8];
-
-//MDC
-IF [cover = LPN][condition = MDC][stageage = 80]
-    THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = LPN][condition = MDC][stageage >= 50][stageage < 100]
-    THEN [condition = LDO]
-          USE [prob = 0.6];
-
-//LDO
-IF [cover = LPN][condition = LDO][condage >= 50][agewfirel >= 50]
-    THEN [condition = LDC]
-          USE [prob = 0.7];
-
-//lodgepole pine + aspen
-
-//EDA
-IF [cover = LPN_ASP][condition = EDA][age = 10]
-    THEN [condition = MDA]
-          USE [prob = 1]; 
-
-//MDA
-IF [cover = LPN_ASP][condition = MDA][stageage = 100]
-    THEN [condition = MDAC]
-          USE [prob = 1]; 
-IF [cover = LPN_ASP][condition = MDA][stageage >= 50][stageage < 100]
-    THEN [condition = MDAC]
-          USE [prob = 0.6];
-
-//MDAC
-IF [cover = LPN_ASP][condition = MDAC][stageage = 100]
-    THEN [condition = LDC]
-          USE [prob = 1]; 
-
-//LDCA
-IF [cover = LPN_ASP][condition = LDCA][stageage = 70]
-    THEN [condition = LDC]
-          USE [prob = 1]; 
-
-
-//black and low sagebrush
-
-//ED
-IF [cover = LSG][condition = ED][age = 20]
-    THEN [condition = MDO]
-          USE [prob = 1]; 
-
-//MDO
-IF [cover = LSG][condition = MDO][stageage=120]
-    THEN [condition = LDO]
-          USE [prob = 1];
-
-//LDO
-IF [cover = LSG][condition = LDO][stageage=70]
-    THEN [condition = LDC]
-          USE [prob = 1];
-
-
-//montane hardwood
-
-//ED
-IF [cover = MHW][condition = ED][age = 40]
-    THEN [condition = MD]
-          USE [prob = 1]; 
-IF [cover = MHW][condition = ED][age >= 20][stageage < 40]
-    THEN [condition = MD]
-          USE [prob = 0.8];
+IF [cover = DFTO][condition = EARLY_ALL][age >= 20][age < 40]
+     THEN [condition = MID_ALL]
+          USE [prob = 0.8]
 
 //MD
-IF [cover = MHW][condition = MD][stageage = 40]
-    THEN [condition = LD]
-          USE [prob = 1]; 
-IF [cover = MHW][condition = MD][stageage >= 20][stageage < 40]
-    THEN [condition = LD]
-          USE [prob = 0.8];
-
-//montane hardwood - ultramafic
-
-//ED
-IF [cover = MHWU][condition = ED][eage = 80]
-    THEN [condition = LD]
-          USE [prob = 1]; 
-IF [cover = MHWU][condition = ED][eage >= 30][age < 80]
-    THEN [condition = LD]
-          USE [prob = 0.4];
-
-//MD
-IF [cover = MHWU][condition = MD][stageage = 40]
-    THEN [condition = LD]
-          USE [prob = 1]; 
-IF [cover = MHWU][condition = MD][stageage >= 20][stageage < 40]
-    THEN [condition = LD]
-          USE [prob = 0.8];
-
-
-//oak conifer forest and woodland
-
-//ED
-IF [cover = [OCFW][condition = ED][age = 50]
-     THEN [condition = MDC]
-          USE [prob = 0.6]
-     OR [condition = MDO]
-          USE [prob = 0.4]; //note, sum of probs = 1, thus ED will transition
-
-IF [cover = [OCFW][condition = ED][age >= 20][age < 50]
-     THEN [condition = MDC]
-          USE [prob = 0.42]
-     OR [condition = MDO]
-          USE [prob = 0.28]; //note, sum of probs = 0.7, thus 0.3 prob stays ED
-
-//MDO
-IF [cover = [OCFW][condition = MDO][stageage = 230]
-     THEN [condition = LDA]
+IF [cover = DFTO][condition = MID_ALL][condage = 40]
+     THEN [condition = LATE_ALL]
           USE [prob = 1];
-IF [cover = [OCFW][condition = MDO][stageage >= 150][stageage < 230]
-     THEN [condition = LDA]
-          USE [prob = 0.4];
-IF [cover = [OCFW][condition = MDO][condage >= 30][agewfirel >= 30]
-     THEN [condition = MDC]
-          USE [prob = 0.7];
-
-//MDC
-IF [cover = [OCFW][condition = MDC][stageage = 150]
-     THEN [condition = LDA]
-          USE [prob = 1];
-IF [cover = [OCFW][condition = MDC][stageage >= 80][stageage < 150]
-     THEN [condition = LDA]
-          USE [prob = 0.4];
-
-
-//oak conifer forest and woodland - ultramafic
-
-//ED
-IF [cover = [OCFWU][condition = ED][age = 100]
-     THEN [condition = MDO]
-          USE [prob = 1];
-IF [cover = [OCFWU][condition = ED][age >= 50][age < 100]
-     THEN [condition = MDO]
-          USE [prob = 0.2];
-
-//MDO
-IF [cover = [OCFWU][condition = MDO][stageage = 280]
-     THEN [condition = LDA]
-          USE [prob = 1];
-IF [cover = [OCFWU][condition = MDO][stageage >= 200][stageage < 280]
-     THEN [condition = LDA]
-          USE [prob = 0.4];
-IF [cover = [OCFWU][condition = MDO][condage >= 60][agewfirel >= 60]
-     THEN [condition = MDC]
-          USE [prob = 0.1];
-
-//MDC
-IF [cover = [OCFWU][condition = MDC][stageage = 300]
-     THEN [condition = LDA]
-          USE [prob = 1];
-IF [cover = [OCFWU][condition = MDC][stageage >= 80][stageage < 300]
-     THEN [condition = LDA]
-          USE [prob = 0.2];
-
-
-//red fir - mesic
-
-//ED
-IF [cover = [RFRM][condition = ED][age = 70]
-     THEN [condition = MDC]
-          USE [prob = 1];
-IF [cover = [RFRM][condition = ED][age >= 30][age < 70]
-     THEN [condition = MDC]
-          USE [prob = 0.6];
-
-//MDO
-IF [cover = [RFRM][condition = MDO][stageage = 80]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = [RFRM][condition = MDO][condage >= 20][agewfirel >= 20]
-     THEN [condition = MDC]
-          USE [prob = 0.9];
-
-//MDC
-IF [cover = [RFRM][condition = MDC][stageage = 80]
-     THEN [condition = LDC]
-          USE [prob = 1];
-
-//LDO
-IF [cover = [RFRM][condition = LDO][stageage >= 20]
-     THEN [condition = LDC]
-          USE [prob = 0.9];
-
-//red fir - xeric
-
-//ED
-IF [cover = [RFRX][condition = ED][age = 150]
-     THEN [condition = MDC]
-          USE [prob = 1];
-IF [cover = [RFRX][condition = ED][age >= 50][age < 150]
-     THEN [condition = MDC]
-          USE [prob = 0.3];
-
-//MDO
-IF [cover = [RFRX][condition = MDO][stageage = 100]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = [RFRX][condition = MDO][stageage >= 80][stageage < 100]
-     THEN [condition = LDO]
-          USE [prob = 0.6];          
-IF [cover = [RFRX][condition = MDO][condage >= 50][agewfirel >= 50]
-     THEN [condition = MDC]
-          USE [prob = 0.3];
-
-//MDC
-IF [cover = [RFRX][condition = MDC][stageage = 100]
-     THEN [condition = LDC]
-          USE [prob = 1];
-IF [cover = [RFRX][condition = MDC][stageage >= 80][stageage < 100]
-     THEN [condition = LDC]
-          USE [prob = 0.7]; 
-
-//LDO
-IF [cover = [RFRX][condition = LDO][stageage >= 50]
-     THEN [condition = LDC]
-          USE [prob = 0.6];
-
-//red fir - ultramafic
-
-//ED
-IF [cover = [RFRU][condition = ED][age = 150]
-     THEN [condition = MDC]
-          USE [prob = 1];
-IF [cover = [RFRU][condition = ED][age >= 80][age < 150]
-     THEN [condition = MDC]
-          USE [prob = 0.2];
-
-//MDO
-IF [cover = [RFRU][condition = MDO][stageage = 180]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = [RFRU][condition = MDO][stageage >= 120][stageage < 180]
-     THEN [condition = LDO]
-          USE [prob = 0.6];          
-IF [cover = [RFRU][condition = MDO][condage >= 80][agewfirel >= 80]
-     THEN [condition = MDC]
-          USE [prob = 0.1];
-
-//MDC
-IF [cover = [RFRU][condition = MDC][stageage = 150]
-     THEN [condition = LDC]
-          USE [prob = 1];
-IF [cover = [RFRU][condition = MDC][stageage >= 80][stageage < 150]
-     THEN [condition = LDC]
-          USE [prob = 0.3];  
-
-//LDO
-IF [cover = [RFRU][condition = LDO][stageage >= 70]
-     THEN [condition = LDC]
-          USE [prob = 0.2];
-
-// big sagebrush
-
-//ED
-IF [cover = [SAGE][condition = ED][age = 20]
-     THEN [condition = MDO]
-          USE [prob = 1];
-
-//MDO
-IF [cover = [SAGE][condition = MDO][condage >= 40][agewfirel = 40]
-     THEN [condition = MDC]
-          USE [prob = 1];
-
-//MDC
-IF [cover = [SAGE][condition = MDC][condage >= 40][agewfirel = 40]
-     THEN [condition = LDO]
-          USE [prob = 1];
-
-//LDO
-IF [cover = [SAGE][condition = LDO][condage >= 50][agewfirel = 50]
-     THEN [condition = LDC]
-          USE [prob = 1];
-
-
-//subalpine conifer
-
-//ED
-IF [cover = [SCN][condition = ED][age = 80]
-     THEN [condition = MDC]
-          USE [prob = 0.9]
-     OR [condition = MDO]
-          USE [prob = 0.1]; //note, sum of probs = 1, thus ED will transition
-
-IF [cover = [SCN][condition = ED][age >= 20][age < 80]
-     THEN [condition = MDC]
-          USE [prob = 0.36]
-     OR [condition = MDO]
-          USE [prob = 0.04]; //note, sum of probs = 0.4, thus 0.6 prob stays ED
-
-//MDO
-IF [cover = [SCN][condition = MDO][stageage = 130]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = [SCN][condition = MDO][stageage >= 60][stageage < 130]
-     THEN [condition = LDO]
-          USE [prob = 0.45];     
-
-//MDC
-IF [cover = [SCN][condition = MDC][stageage = 130]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = [SCN][condition = MDC][stageage >= 60][stageage < 130]
-     THEN [condition = LDO]
-          USE [prob = 0.45];
-
-//LDO
-IF [cover = [SCN][condition = MDC][stageage >= 80]
-     THEN [condition = LDO]
-          USE [prob = 0.3];
-
-//subalpine conifer - aspen
-
-//EDA
-IF [cover = SCN_ASP][condition = EDA][age = 10]
-    THEN [condition = MDA]
-          USE [prob = 1]; 
-
-//MDA
-//using Eastside Aspen values         
-IF [cover = SCN_ASP][condition = MDA][stageage = 130]
-    THEN [condition = LDAC]
-          USE [prob = 1]; 
-IF [cover = SMC_ASP][condition = MDA][stageage >= 80][stageage < 1300]
-    THEN [condition = LDAC]
-          USE [prob = 0.6];
-
-//LDAC
-IF [cover = SCN_ASP][condition = LDAC][stageage = 100]
-    THEN [condition = LDC]
-          USE [prob = 1]; 
- 
-
-//oak woodland (blue oak-foothill pine)
-
-//ED
-IF [cover = [OAK][condition = ED][age = 60]
-     THEN [condition = MDC]
-          USE [prob = 1];
-IF [cover = [OAK][condition = ED][age >= 20][age < 60]
-     THEN [condition = MDC]
-          USE [prob = 0.6];
-
-//MD
-IF [cover = [OAK][condition = MD][stageage = 70]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = [OAK][condition = MD][stageage >= 40][stageage < 70]
-     THEN [condition = LDO]
-          USE [prob = 0.7];
-
-//LDO
-IF [cover = [OAK][condition = LD][stageage = 60]
-     THEN [condition = LDC]
-          USE [prob = 1];
-IF [cover = [OAK][condition = LD][stageage >= 20][stageage < 60]
-     THEN [condition = LDC]
-          USE [prob = 0.7];
-
-//curl-leaf mountain mahogany
-
-//ED
-IF [cover = [CMM][condition = ED][age = 20]
-     THEN [condition = MDO]
-          USE [prob = 1];
-
-//MDO
-IF [cover = [CMM][condition = MDO][stageage = 120]
-     THEN [condition = LD]
-          USE [prob = 1];
-IF [cover = [CMM][condition = MDO][condage >= 40][agewfirel >= 40]
-     THEN [condition = MDC]
-          USE [prob = 1];
-
-//MDC
-IF [cover = [CMM][condition = MDC][stageage = 120]
-     THEN [condition = LD]
-          USE [prob = 1];
-
-//yellow pine
-
-//ED
-IF [cover = YPN][condition = ED][age = 80]
-     THEN [condition = MDC]
-          USE [prob = 0.67]
-     OR [condition = MDO]
-          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
-
-IF [cover = YPN][condition = ED][age >= 40][age < 80]
-     THEN [condition = MDC]
-          USE [prob = 0.47]
-     OR [condition = MDO]
-          USE [prob = 0.23]; //note, sum of probs = 0.7, thus 0.3 prob stays ED
-
-//MDO
-IF [cover = YPN][condition = MDO][stageage = 230]
-     THEN [condition = LDO]
-          USE [prob = 1];
-IF [cover = YPN][condition = MDO][stageage >= 170][stageage < 230]
-     THEN [condition = LDO]
-          USE [prob = 0.6];
-IF [cover = YPN][condition = MDO][condage >= 40][agewfirel >= 40]
-     THEN [condition = MDC]
-          USE [prob = 0.8];
-
-//MDC
-IF [cover = YPN][condition = MDC][stageage = 200]
-     THEN [condition = LDC]
-          USE [prob = 1];
-
-IF [cover = YPN][condition = MDC][stageage >= 100][stageage < 200]
-     THEN [condition = LDC]
-          USE [prob = 0.4];
-       
-//LDO
-IF [cover = YPN][condition = LDO][condage >= 50][agewfirel >= 50]
-     THEN [condition = LDC]
-          USE [prob = 0.7];
-
-
-///////////DESCRIPTION NOT YET REVIEWED
-
-//DFTO
-
-//ED
-IF [cover = DFTO][condition = ED][stageage = 40]
-     THEN [condition = MD]
-          USE [prob = 1];
-IF [cover = DFTO][condition = ED][age >= 20][age < 40]
-     THEN [condition = MD]
-          USE [prob = 0.4]
-
-//MD
-IF [cover = DFTO][condition = MD][stageage = 40]
-     THEN [condition = LD]
-          USE [prob = 1];
-IF [cover = DFTO][condition = MD][age >= 20][age < 40]
-     THEN [condition = LD]
+IF [cover = DFTO][condition = MID_ALL][age >= 20][age < 40]
+     THEN [condition = LATE_ALL]
           USE [prob = 0.8]
 
 //DFTO - ultramafic
 
 //ED
-IF [cover = DFTOU][condition = ED][age = 80]
-     THEN [condition = MD]
+IF [cover = DFTO_U][condition = EARLY_ALL][age = 80]
+     THEN [condition = MID_ALL]
           USE [prob = 1];
-IF [cover = DFTOU][condition = ED][age >= 30][age < 80]
-     THEN [condition = MD]
+IF [cover = DFTO_U][condition = EARLY_ALL][age >= 30][age < 80]
+     THEN [condition = MID_ALL]
           USE [prob = 0.4]
 
 //MD
-IF [cover = DFTOU][condition = MD][stageage = 40]
-     THEN [condition = LD]
+IF [cover = DFTO_U][condition = MID_ALL][condage = 80]
+     THEN [condition = LATE_ALL]
           USE [prob = 1];
-IF [cover = DFTOU][condition = MD][stageage >= 20][stageage < 40]
-     THEN [condition = LD]
-          USE [prob = 0.8]
+IF [cover = DFTO_U][condition = MID_ALL][condage >= 30][condage < 80]
+     THEN [condition = LATE_ALL]
+          USE [prob = 0.4]
 
-
-//western white pine
+//LPN lodgepole pine
 
 //ED
-IF [cover = WWP][condition = ED][age = 70]
-     THEN [condition = MDO]
-          USE [prob = 0.67]
-     OR [condition = MDC]
-          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
-
-IF [cover = WWP][condition = ED][age >= 30][age < 70]
-     THEN [condition = MDO]
-          USE [prob = 0.47]
-     OR [condition = MDC]
-          USE [prob = 0.23]; //note, sum of probs = 0.7, thus 0.3 prob stays ED
+IF [cover = LPN][condition = EARLY_ALL][age = 40]
+    THEN [condition = MID_CL]
+          USE [prob = 1];
+IF [cover = LPN][condition = EARLY_ALL][age >= 10][age < 40]
+    THEN [condition = MID_CL]
+          USE [prob = 0.6];
 
 //MDO
-IF [cover = WWP][condition = MDO][stageage = 120]
-     THEN [condition = LDO]
+IF [cover = LPN][condition = MID_OP][stageage = 100]
+    THEN [condition = LATE_OP]
           USE [prob = 1];
-IF [cover = WWP][condition = MDO][stageage >= 70][stageage < 120]
-     THEN [condition = LDO]
-          USE [prob = 0.6];
-IF [cover = WWP][condition = MDO][condage >= 30][agewfirel >= 30]
-     THEN [condition = MDC]
+IF [cover = LPN][condition = MID_OP][stageage >= 50][stageage < 100]
+    THEN [condition = LATE_OP]
+          USE [prob = 0.5];
+IF [cover = LPN][condition = MID_OP][condage >= 20][agewfirel >= 20]
+    THEN [condition = MID_CL]
           USE [prob = 0.8];
 
 //MDC
-IF [cover = WWP][condition = MDC][stageage = 120]
-     THEN [condition = LDC]
+IF [cover = LPN][condition = MID_CL][stageage = 80]
+    THEN [condition = LATE_CL]
           USE [prob = 1];
-IF [cover = WWP][condition = MDC][stageage >= 70][stageage < 120]
-     THEN [condition = LDC]
+IF [cover = LPN][condition = MID_CL][stageage >= 40][stageage < 80]
+    THEN [condition = LATE_CL]
           USE [prob = 0.6];
 
 //LDO
-IF [cover = WWP][condition = LDO][condage >= 30][agewfirel >= 30]
-     THEN [condition = LDC]
+IF [cover = LPN][condition = LATE_OP][condage >= 50][agewfirel >= 50]
+    THEN [condition = LATE_CL]
+          USE [prob = 0.7];
+
+//LPN_ASP: lodgepole pine + aspen
+
+//EDA
+IF [cover = LPN_ASP][condition = EARLY_ASP][age = 10]
+    THEN [condition = MID_ASP]
+          USE [prob = 1]; 
+
+//MDA
+IF [cover = LPN_ASP][condition = MID_ASP][condage = 100]
+    THEN [condition = MID_AC]
+          USE [prob = 1]; 
+IF [cover = LPN_ASP][condition = MID_ASP][condage >= 50][condage < 100]
+    THEN [condition = MID_AC]
+          USE [prob = 0.6];
+
+//MDAC
+IF [cover = LPN_ASP][condition = MID_AC][condage = 100]
+    THEN [condition = LATE_CL]
+          USE [prob = 1]; 
+
+//LDCA
+IF [cover = LPN_ASP][condition = LATE_CA][condage = 70][agewfirel = 70]
+    THEN [condition = LATE_CL]
+          USE [prob = 1]; 
+
+//LSG: black and low sagebrush
+
+//ED
+IF [cover = LSG][condition = EARLY_ALL][age = 20]
+    THEN [condition = MID_ALL]
+          USE [prob = 1]; 
+
+//MD
+IF [cover = LSG][condition = MID_OP][condage=120]
+    THEN [condition = LATE_OP]
+          USE [prob = 1];
+
+//LDO
+IF [cover = LSG][condition = LATE_OP][condage=70]
+    THEN [condition = LATE_CL]
+          USE [prob = 1];
+
+//MHW: montane hardwood
+
+//ED
+IF [cover = MHW][condition = EARLY_ALL][age = 40]
+    THEN [condition = MID_ALL]
+          USE [prob = 1]; 
+IF [cover = MHW][condition = EARLY_ALL][age >= 20][condage < 40]
+    THEN [condition = MID_ALL]
           USE [prob = 0.8];
 
+//MD
+IF [cover = MHW][condition = MID_ALL][condage = 40]
+    THEN [condition = LATE_ALL]
+          USE [prob = 1]; 
+IF [cover = MHW][condition = MID_ALL][condage >= 20][condage < 40]
+    THEN [condition = LATE_ALL]
+          USE [prob = 0.8];
+
+//MHW_U: montane hardwood - ultramafic
+
+//ED
+IF [cover = MHW_U][condition = EARLY_ALL][age = 80]
+    THEN [condition = MID_ALL]
+          USE [prob = 1]; 
+IF [cover = MHW_U][condition = EARLY_ALL][age >= 30][age < 80]
+    THEN [condition = MID_ALL]
+          USE [prob = 0.4];
+
+//MD
+IF [cover = MHW_U][condition = MID_ALL][condage = 80]
+    THEN [condition = LATE_ALL]
+          USE [prob = 1]; 
+IF [cover = MHW_U][condition = MID_ALL][condage >= 30][condage < 80]
+    THEN [condition = LATE_ALL]
+          USE [prob = 0.8];
+
+//montane riparian
+
+//ED
+IF [cover = MRIP][condition = EARLY_ALL][age = 10]
+    THEN [condition = MID_ALL]
+          USE [prob = 1]; 
+
+//MD
+IF [cover = MRIP][condition = MID_ALL][condage = 20]
+    THEN [condition = LATE_ALL]
+          USE [prob = 1]; 
+
+//OAK: oak woodland (blue oak-foothill pine)
+
+//ED
+IF [cover = [OAK][condition = EARLY_ALL][age = 60]
+     THEN [condition = MID_ALL]
+          USE [prob = 1];
+IF [cover = [OAK][condition = EARLY_ALL][age >= 20][age < 60]
+     THEN [condition = MID_ALL]
+          USE [prob = 0.6];
+
+//MD
+IF [cover = [OAK][condition = MID_ALL][stageage = 70]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = [OAK][condition = MID_ALL][stageage >= 40][stageage < 70]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.7];
+
+//LDO
+IF [cover = [OAK][condition = LATE_OP][condage >= 60][agewfirel >= 60]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = [OAK][condition = LATE_OP][condage >= 20][condage < 60][agewfirel >= 20]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.7];
+
+//OCFW: oak conifer forest and woodland
+
+//ED
+IF [cover = [OCFW][condition = EARLY_ALL][age = 50]
+     THEN [condition = MID_CL]
+          USE [prob = 0.6]
+     OR [condition = MID_OP]
+          USE [prob = 0.4]; //note, sum of probs = 1, thus ED will transition
+
+IF [cover = [OCFW][condition = EARLY_ALL][age >= 20][age < 50]
+     THEN [condition = MID_CL]
+          USE [prob = 0.42]
+     OR [condition = MID_OP]
+          USE [prob = 0.28]; //note, sum of probs = 0.7, thus 0.3 prob stays ED
+
+//MDO
+IF [cover = [OCFW][condition = MID_OP][stageage = 230]
+     THEN [condition = LATE_ALL]
+          USE [prob = 1];
+IF [cover = [OCFW][condition = MID_OP][stageage >= 150][stageage < 230]
+     THEN [condition = LATE_ALL]
+          USE [prob = 0.4];
+IF [cover = [OCFW][condition = MID_OP][condage >= 30][agewfirel >= 30]
+     THEN [condition = MID_CL]
+          USE [prob = 0.7];
+
+//MDC
+IF [cover = [OCFW][condition = MID_CL][stageage = 150]
+     THEN [condition = LATE_ALL]
+          USE [prob = 1];
+IF [cover = [OCFW][condition = MID_CL][stageage >= 80][stageage < 150]
+     THEN [condition = LATE_ALL]
+          USE [prob = 0.4];
 
 
+//OCFW_U: oak conifer forest and woodland - ultramafic
+
+//ED
+IF [cover = [OCFW_U][condition = EARLY_ALL][age = 100]
+     THEN [condition = MID_OP]
+          USE [prob = 1];
+IF [cover = [OCFW_U][condition = EARLY_ALL][age >= 50][age < 100]
+     THEN [condition = MID_OP]
+          USE [prob = 0.2];
+
+//MDO
+IF [cover = [OCFW_U][condition = MID_OP][stageage = 280]
+     THEN [condition = LATE_ALL]
+          USE [prob = 1];
+IF [cover = [OCFW_U][condition = MID_OP][stageage >= 200][stageage < 280]
+     THEN [condition = LATE_ALL]
+          USE [prob = 0.4];
+IF [cover = [OCFW_U][condition = MID_OP][condage >= 60][agewfirel >= 60]
+     THEN [condition = MID_CL]
+          USE [prob = 0.1];
+
+//MDC
+IF [cover = [OCFW_U][condition = MID_CL][stageage = 300]
+     THEN [condition = LATE_ALL]
+          USE [prob = 1];
+IF [cover = [OCFW_U][condition = MID_CL][stageage >= 80][stageage < 300]
+     THEN [condition = LATE_ALL]
+          USE [prob = 0.2];
+
+//RFR_M: red fir - mesic
+
+//ED
+IF [cover = [RFR_M][condition = EARLY_ALL][age = 70]
+     THEN [condition = MID_CL]
+          USE [prob = 1];
+IF [cover = [RFR_M][condition = EARLY_ALL][age >= 30][age < 70]
+     THEN [condition = MID_CL]
+          USE [prob = 0.6];
+
+//MDO
+IF [cover = [RFR_M][condition = MID_OP][stageage = 80]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = [RFR_M][condition = MID_OP][condage >= 20][agewfirel >= 20]
+     THEN [condition = MID_CL]
+          USE [prob = 0.9];
+
+//MDC
+IF [cover = [RFR_M][condition = MID_CL][stageage = 80]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+
+//LDO
+IF [cover = [RFR_M][condition = LATE_OP][stageage >= 20][agewfirel >= 20]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.9];
+
+//RFR_X: red fir - xeric
+
+//ED
+IF [cover = [RFR_X][condition = EARLY_ALL][age = 150]
+     THEN [condition = MID_OP]
+          USE [prob = 1];
+IF [cover = [RFR_X][condition = EARLY_ALL][age >= 50][age < 150]
+     THEN [condition = MID_OP]
+          USE [prob = 0.3];
+
+//MDO
+IF [cover = [RFR_X][condition = MID_OP][stageage = 100]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = [RFR_X][condition = MID_OP][stageage >= 80][stageage < 100]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.6];          
+IF [cover = [RFR_X][condition = MID_OP][condage >= 50][agewfirel >= 50]
+     THEN [condition = MID_CL]
+          USE [prob = 0.3];
+
+//MDC
+IF [cover = [RFR_X][condition = MID_CL][stageage = 100]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = [RFR_X][condition = MID_CL][stageage >= 80][stageage < 100]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.7]; 
+
+//LDO
+IF [cover = [RFR_X][condition = LATE_OP][stageage >= 50][agewfirel >=50]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.6];
+
+//RFR_U: red fir - ultramafic
+
+//ED
+IF [cover = [RFR_U][condition = EARLY_ALL][age = 150]
+     THEN [condition = MID_OP]
+          USE [prob = 1];
+IF [cover = [RFR_U][condition = EARLY_ALL][age >= 80][age < 150]
+     THEN [condition = MID_OP]
+          USE [prob = 0.2];
+
+//MDO
+IF [cover = [RFR_U][condition = MID_OP][stageage = 180]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = [RFR_U][condition = MID_OP][stageage >= 120][stageage < 180]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.6];          
+IF [cover = [RFR_U][condition = MID_OP][condage >= 80][agewfirel >= 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.1];
+
+//MDC
+IF [cover = [RFR_U][condition = MID_CL][stageage = 150]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = [RFR_U][condition = MID_CL][stageage >= 80][stageage < 150]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.3];  
+
+//LDO
+IF [cover = [RFR_U][condition = LATE_OP][stageage >= 70][agewfirel >= 70]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.2];
+
+
+//RFR_ASP: red fir + aspen
+
+//EDA
+IF [cover = RFR_ASP][condition = EARLY_ASP][age = 10]
+    THEN [condition = MID_ASP]
+          USE [prob = 1]; 
+
+//MDA
+IF [cover = RFR_ASP][condition = MID_ASP][condage = 100]
+    THEN [condition = MID_AC]
+          USE [prob = 1]; 
+IF [cover = RFR_ASP][condition = MID_ASP][condage >= 50][condage < 100]
+    THEN [condition = MID_AC]
+          USE [prob = 0.6];
+
+//MDAC
+****************IF [cover = RFR_ASP][condition = MID_AC][condage = 100]
+    THEN [condition = LATE_CL]
+          USE [prob = 1]; 
+
+//LDCA
+IF [cover = RFR_ASP][condition = LATE_CA][condage >= 70][agewfirel >=70]
+    THEN [condition = LATE_CL]
+          USE [prob = 1]; 
+
+//SAGE: big sagebrush
+
+//ED
+IF [cover = [SAGE][condition = EARLY_ALL][age = 20]
+     THEN [condition = MID_OP]
+          USE [prob = 1];
+
+//MDO
+IF [cover = [SAGE][condition = MID_OP][condage >= 40][agewfirel = 40]
+     THEN [condition = MID_CL]
+          USE [prob = 1];
+
+//MDC
+IF [cover = [SAGE][condition = MID_CL][condage >= 40][agewfirel = 40]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+
+//LDO
+IF [cover = [SAGE][condition = LATE_OP][condage >= 50][agewfirel = 50]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+
+//SCN: subalpine conifer
+
+//ED
+IF [cover = [SCN][condition = EARLY_ALL][age = 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.9]
+     OR [condition = MID_OP]
+          USE [prob = 0.1]; //note, sum of probs = 1, thus ED will transition
+
+IF [cover = [SCN][condition = EARLY_ALL][age >= 20][age < 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.36]
+     OR [condition = MID_OP]
+          USE [prob = 0.04]; //note, sum of probs = 0.4, thus 0.6 prob stays ED
+
+//MDO
+IF [cover = [SCN][condition = MID_OP][stageage = 130]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = [SCN][condition = MID_OP][stageage >= 60][stageage < 130]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.45];     
+
+//MDC
+IF [cover = [SCN][condition = MID_CL][stageage = 130]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = [SCN][condition = MID_CL][stageage >= 60][stageage < 130]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.45];
+
+//LDO
+IF [cover = [SCN][condition = MID_CL][stageage >= 80][agewfirel >= 80]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.3];
+
+//SCN_ASP: subalpine conifer - aspen
+
+//EDA
+IF [cover = SCN_ASP][condition = EARLY_ASP][age = 10]
+    THEN [condition = MID_ASP]
+          USE [prob = 1]; 
+
+//MDA        
+IF [cover = SCN_ASP][condition = MID_ASP][condage = 200]
+    THEN [condition = LATE_CA]
+          USE [prob = 1]; 
+IF [cover = SCN_ASP][condition = MID_ASP][condage >= 80][condage < 200]
+    THEN [condition = LATE_CA]
+          USE [prob = 0.3];
+
+ 
+//SMC_M: sierran mixed conifer - mesic
+
+//ED
+IF [cover = SMC_M][condition = EARLY_ALL][age = 40]
+     THEN [condition = MID_CL]
+          USE [prob = 0.67]
+     OR [condition = MID_OP]
+          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
+
+IF [cover = SMC_M][condition = EARLY_ALL][age >= 20][age < 40]
+     THEN [condition = MID_CL]
+          USE [prob = 0.53]
+     OR [condition = MID_OP]
+          USE [prob = 0.37]; //note, sum of probs = 0.8, thus 0.2 prob stays ED
+
+//MDO
+IF [cover = SMC_M][condition = MID_OP][stageage = 150]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = SMC_M][condition = MID_OP][stageage >= 100][stageage < 150]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.6];
+IF [cover = SMC_M][condition = MID_OP][condage >= 30][agewfirel >= 30]
+     THEN [condition = MID_CL]
+          USE [prob = 0.9];
+
+//MDC
+IF [cover = SMC_M][condition = MID_CL][stageage = 150]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = SMC_M][condition = MID_CL][stageage >= 100][stageage < 150]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.6];
+       
+//LDO
+IF [cover = SMC_M][condition = LATE_OP][condage >= 30][agewfirel >= 30]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.9];
+
+
+//SMC_X: sierran mixed conifer - xeric
+
+//ED
+IF [cover = SMC_X][condition = EARLY_ALL][age = 80]
+    THEN [condition = MID_OP]
+          USE [prob = 1];
+IF [cover = SMC_X][condition = EARLY_ALL][age >= 40][age < 80]
+    THEN [condition = MID_OP]
+          USE [prob = 0.4];
+
+//MDO
+IF [cover = SMC_X][condition = MID_OP][stageage = 200]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = SMC_X][condition = MID_OP][stageage >= 160][stageage < 200]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.4];
+IF [cover = SMC_X][condition = MID_OP][condage >= 80][agewfirel >= 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.3];
+
+//MDC
+IF [cover = SMC_X][condition = MID_CL][stageage = 200]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = SMC_X][condition = MID_CL][stageage >= 160][stageage < 200]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.4];
+
+//LDO
+IF [cover = SMC_X][condition = LATE_OP][condage >= 40][agewfirel >= 40]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.6];
+
+
+//SMC_U: sierran mixed conifer - ultramafic
+
+//ED
+IF [cover = SMC_U][condition = EARLY_ALL][age = 150]
+    THEN [condition = MID_OP]
+          USE [prob = 1]; 
+IF [cover = SMC_U][condition = EARLY_ALL][age >= 80][age < 150]
+    THEN [condition = MID_OP]
+          USE [prob = 0.2];
+
+//MDO
+IF [cover = SMC_U][condition = MID_OP][stageage = 260]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = SMC_U][condition = MID_OP][stageage >= 200][stageage < 260]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.4];
+IF [cover = SMC_U][condition = MID_OP][condage >= 80][agewfirel >= 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.1];
+
+//MDC
+IF [cover = SMC_U][condition = MID_CL][stageage = 260]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = SMC_U][condition = MID_CL][stageage >= 200][stageage < 260]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.4];
+
+//LDO
+IF [cover = SMC_U][condition = LATE_OP][condage >= 50][agewfirel >= 50]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.2];
+
+//SMC_ASP: sierran mixed conifer + aspen
+
+//EDA
+IF [cover = SMC_ASP][condition = EARLY_ASP][age = 10]
+    THEN [condition = MID_ASP]
+          USE [prob = 1]; 
+
+//MDA
+IF [cover = SMC_ASP][condition = MID_ASP][stageage = 100]
+    THEN [condition = MID_AC]
+          USE [prob = 1]; 
+IF [cover = SMC_ASP][condition = MID_ASP][stageage >= 50][stageage < 100]
+    THEN [condition = MID_AC]
+          USE [prob = 0.6];
+
+//MDAC
+IF [cover = SMC_ASP][condition = MID_AC][stageage = 100]
+    THEN [condition = LATE_CL]
+          USE [prob = 1]; 
+
+//LDCA
+IF [cover = SMC_ASP][condition = LATE_CA][stageage = 70]
+    THEN [condition = LATE_CL]
+          USE [prob = 1]; 
+
+//WWP: western white pine
+
+//ED
+IF [cover = WWP][condition = EARLY_ALL][age = 70]
+     THEN [condition = MID_OP]
+          USE [prob = 0.67]
+     OR [condition = MID_CL]
+          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
+
+IF [cover = WWP][condition = EARLY_ALL][age >= 30][age < 70]
+     THEN [condition = MID_OP]
+          USE [prob = 0.47]
+     OR [condition = MID_CL]
+          USE [prob = 0.23]; //note, sum of probs = 0.7, thus 0.3 prob stays ED
+
+//MDO
+IF [cover = WWP][condition = MID_OP][stageage = 120]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = WWP][condition = MID_OP][stageage >= 70][stageage < 120]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.6];
+IF [cover = WWP][condition = MID_OP][condage >= 30][agewfirel >= 30]
+     THEN [condition = MID_CL]
+          USE [prob = 0.8];
+
+//MDC
+IF [cover = WWP][condition = MID_CL][stageage = 120]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+IF [cover = WWP][condition = MID_CL][stageage >= 70][stageage < 120]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.6];
+
+//LDO
+IF [cover = WWP][condition = LATE_OP][condage >= 30][agewfirel >= 30]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.8];
+
+//YPN: yellow pine
+
+//ED
+IF [cover = YPN][condition = EARLY_ALL][age = 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.67]
+     OR [condition = MID_OP]
+          USE [prob = 0.33]; //note, sum of probs = 1, thus ED will transition
+
+IF [cover = YPN][condition = EARLY_ALL][age >= 40][age < 80]
+     THEN [condition = MID_CL]
+          USE [prob = 0.47]
+     OR [condition = MID_OP]
+          USE [prob = 0.23]; //note, sum of probs = 0.7, thus 0.3 prob stays ED
+
+//MDO
+IF [cover = YPN][condition = MID_OP][stageage = 230]
+     THEN [condition = LATE_OP]
+          USE [prob = 1];
+IF [cover = YPN][condition = MID_OP][stageage >= 170][stageage < 230]
+     THEN [condition = LATE_OP]
+          USE [prob = 0.6];
+IF [cover = YPN][condition = MID_OP][condage >= 40][agewfirel >= 40]
+     THEN [condition = MID_CL]
+          USE [prob = 0.8];
+
+//MDC
+IF [cover = YPN][condition = MID_CL][stageage = 200]
+     THEN [condition = LATE_CL]
+          USE [prob = 1];
+
+IF [cover = YPN][condition = MID_CL][stageage >= 100][stageage < 200]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.4];
+       
+//LDO
+IF [cover = YPN][condition = LATE_OP][condage >= 50][agewfirel >= 50]
+     THEN [condition = LATE_CL]
+          USE [prob = 0.7];
+
+//YPN_ASP: subalpine conifer - aspen
+
+//EDA
+IF [cover = YPN_ASP][condition = EARLY_ASP][age = 10]
+    THEN [condition = MID_ASP]
+          USE [prob = 1]; 
+
+//MDA       
+IF [cover = YPN_ASP][condition = MID_ASP][condage = 130]
+    THEN [condition = LATE_CA]
+          USE [prob = 1]; 
+IF [cover = YPN_ASP][condition = MID_ASP][condage >= 80][condage < 130]
+    THEN [condition = LATE_CA]
+          USE [prob = 0.6];
 
 
 
