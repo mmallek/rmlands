@@ -1,0 +1,331 @@
+DEFINE treat_null [treat = null][agemanage = null][agetreat = null][sheltcond = null];
+DEFINE wfire_high [agewfireh = 0][agewfirel = null][agewfire = 0][wfirefreqh +1];
+DEFINE wfire_low [agewfirel = 0][agewfire = 0][wfirefreql +1];
+DEFINE pdec_null [pdecmort = null][agepdech = null][agepdecl = null][agepdec = null];
+DEFINE mtpb_null [mtpbmort = null][agemtpbh = null][agemtpbl = null][agemtpb = null];
+DEFINE dfbb_null [dfbbmort = null][agedfbbh = null][agedfbbl = null][agedfbb = null];
+DEFINE sbb_null [sbbmort = null][agesbbh = null][agesbbl = null][agesbb = null];
+DEFINE sbud_null [sbudmort = null][agesbudh = null][agesbudl = null][agesbud = null];
+DEFINE wfire_null [wfiremort = null][agewfireh = null][agewfirel = null][agewfire = null];
+
+<wildfire>
+// Nonseral stages
+// If cover is these and it burns, reset all ages and condition.
+
+IF [cover = AGR][agewfireh = 0]
+     THEN [condition = NS, age = 0, condage = 0, stageage = 0 | 1];
+IF [cover = BAR][agewfireh = 0]
+     THEN [condition = NS, age = 0, condage = 0, stageage = 0 | 1];
+IF [cover = GRASS][agewfireh = 0]
+     THEN [condition = NS, age = 0, condage = 0, stageage = 0 | 1];
+IF [cover = MED][agewfireh = 0]
+     THEN [condition = NS, age = 0, condage = 0, stageage = 0 | 1];
+IF [cover = URB][agewfireh = 0]
+     THEN [condition = NS, age = 0, condage = 0, stageage = 0 | 1];
+IF [cover = WAT][agewfireh = 0]
+     THEN [condition = NS, age = 0, condage = 0, stageage = 0 | 1];     
+
+///////////////////////////////////
+// CMM: curl-leaf mountain mahogany
+///////////////////////////////////
+
+// If cover is CMM and condition is ANY and age since high mortality wildfire is 0
+// (This means if a high mortality wildfire just took place)
+IF [cover = CMM][condition = EARLY_ALL|MID_MOD|LATE_CL][agewfireh = 0]
+// Then that patch will have its condition reset to ED, and age, condage, and condage are reset to 0
+     THEN [condition = EARLY_ALL, age = 0,condage = 0,stageage=0 | 1];
+// If there is a low mortality wildfire, it has no effect.
+
+//////////////////////
+// LPN: lodgepole pine
+//////////////////////
+IF [cover = LPN][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = LPN][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 1];
+IF [cover = LPN][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.6825];
+IF [cover = LPN][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 1];
+IF [cover = LPN][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.7260];
+
+////////////////////////////////
+// LPN_ASP: lodgepole with aspen
+////////////////////////////////
+// No transitions unless late closed?
+IF [cover = LPN_ASP][condition = EARLY_ASP|MID_ASP|MID_AC|LATE_CL|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = LPN_ASP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_CA,condage = 0 | 1];
+
+////////////////////////////////
+// LSG: black and low sagebrush
+////////////////////////////////
+IF [cover = LSG][condition = EARLY_ALL|MID_MOD|LATE_CL][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+
+////////////////////////////////
+// MEG_M: mixed evergreen - mesic
+////////////////////////////////
+// These are my somewhat made up probabilities from "disturbance_prob_calcs.xlsx"
+IF [cover = MEG_M][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = MEG_M][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.2188];
+IF [cover = MEG_M][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.1416];
+IF [cover = MEG_M][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.2593];
+IF [cover = MEG_M][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1667];
+
+////////////////////////////////
+// MEG_U: mixed evergreen - ultramafic
+////////////////////////////////
+IF [cover = MEG_U][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = MEG_U][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.2188];
+IF [cover = MEG_U][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.1416];
+IF [cover = MEG_U][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.2593];
+IF [cover = MEG_U][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1667];
+
+////////////////////////////////
+// MEG_X: mixed evergreen - xeric
+////////////////////////////////
+IF [cover = MEG_X][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = MEG_X][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.2042];
+IF [cover = MEG_X][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.1314];
+IF [cover = MEG_X][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.2429];
+IF [cover = MEG_X][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1549];
+
+/////////////////////////
+// MRIP: montane riparian
+/////////////////////////
+IF [cover = MRIP][condition = EARLY_ALL|MID_OP|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1]; 
+
+/////////////////////
+// OAK: oak woodland
+////////////////////
+IF [cover = OAK][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+//IF [cover = OAK][condition = MID_CL][agewfirel = 0]
+//     THEN [condition = MID_MOD,condage = 0 | 0];
+//IF [cover = OAK][condition = MID_MOD][agewfirel = 0]
+//     THEN [condition = MID_OP,condage = 0 | 0];
+IF [cover = OAK][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 1.0000];
+IF [cover = OAK][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1429];
+
+////////////////////////////////////////
+// OCFW: oak-conifer forest and woodland
+////////////////////////////////////////
+IF [cover = OCFW][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = OCFW][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.5952];
+IF [cover = OCFW][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.3205];     
+IF [cover = OCFW][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.5758];
+IF [cover = OCFW][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1803];  
+
+////////////////////////////////////////
+// OCFW: oak-conifer forest and woodland - ultramafic
+////////////////////////////////////////
+IF [cover = OCFW_U][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = OCFW_U][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.5952];
+IF [cover = OCFW_U][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.3205];
+IF [cover = OCFW_U][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.5758];
+IF [cover = OCFW_U][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1803];
+
+/////////////////////////
+// RFR_M: red fir - mesic
+/////////////////////////
+IF [cover = RFR_M][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = RFR_M][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.1770];
+IF [cover = RFR_M][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.1313];
+IF [cover = RFR_M][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.1496];
+IF [cover = RFR_M][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1039];
+
+/////////////////////////
+// RFR_X: red fir - xeric
+/////////////////////////
+IF [cover = RFR_X][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = RFR_X][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.1770];
+IF [cover = RFR_X][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.1313];
+IF [cover = RFR_X][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.1496];
+IF [cover = RFR_X][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1039];
+
+/////////////////////////
+// RFR_U:red fir - ultramafic
+/////////////////////////
+IF [cover = RFR_U][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = RFR_U][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.1770];
+IF [cover = RFR_U][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.1313];
+IF [cover = RFR_U][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.1496];
+IF [cover = RFR_U][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1039];
+
+/////////////////////////
+// RFR_ASP: red fir - aspen
+/////////////////////////
+IF [cover = RFR_ASP][condition = EARLY_ASP|MID_ASP|MID_AC|LATE_CL|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = RFR_ASP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_CA,condage = 0 | 0.1039];
+
+//////////////////////
+// SAGE: big sagebrush
+//////////////////////
+IF [cover = SAGE][condition = EARLY_ALL|MID_MOD|LATE_CL][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+
+/////////////////////////
+// SCN: subalpine conifer
+ v
+IF [cover = SCN][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = SCN][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 1];
+IF [cover = SCN][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 1];
+IF [cover = SCN][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 1];
+IF [cover = SCN][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 1];
+
+/////////////////////////
+// SCN_ASP: subalpine conifer - aspen 
+/////////////////////////    
+IF [cover = SCN_ASP][condition = EARLY_ASP|MID_ASP|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP,age = 0,condage = 0,stageage=0 | 1];
+
+/////////////////////////
+// SMC_M: sierran mixed conifer - mesic
+/////////////////////////
+IF [cover = SMC_M][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = SMC_M][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.5263];
+IF [cover = SMC_M][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.3570];
+IF [cover = SMC_M][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.5435];
+IF [cover = SMC_M][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.2442];
+
+/////////////////////////
+// SMC_X: sierran mixed conifer - xeric
+/////////////////////////
+IF [cover = SMC_X][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = SMC_X][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.4237];
+IF [cover = SMC_X][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.3196];
+IF [cover = SMC_X][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.5662];
+IF [cover = SMC_X][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.2978];
+
+/////////////////////////
+// SMC_U: sierran mixed conifer - ultramafic
+/////////////////////////
+IF [cover = SMC_U][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = SMC_U][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.5263];
+IF [cover = SMC_U][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.3570];
+IF [cover = SMC_U][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.5435];
+IF [cover = SMC_U][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.2442];
+
+/////////////////////////
+// SMC_ASP: sierran mixed conifer - aspen
+/////////////////////////
+IF [cover = SMC_ASP][condition = EARLY_ASP|MID_ASP|MID_AC|LATE_CL|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP,age = 0,condage = 0,stageage=0 | 1];
+IF [cover = SMC_ASP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_CA,condage = 0 | 0.5435];
+
+/////////////////////////
+// WWP: western white pine
+/////////////////////////
+IF [cover = WWP][condition = EARLY_ALL|MID_CL|MID_OP|LATE_CL|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = WWP][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.8000];
+IF [cover = WWP][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.4000];
+IF [cover = WWP][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.8000];
+IF [cover = WWP][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.4000];
+
+/////////////////////////
+// YPN: yellow pine
+/////////////////////////
+IF [cover = YPN][condition = EARLY_ALL|MID_CL|MID_MOD|MID_OP|LATE_CL|LATE_MOD|LATE_OP][agewfireh = 0]
+     THEN [condition = EARLY_ALL,age = 0,condage = 0,stageage=0 | 1];     
+IF [cover = YPN][condition = MID_CL][agewfirel = 0]
+     THEN [condition = MID_MOD,condage = 0 | 0.5952];
+IF [cover = YPN][condition = MID_MOD][agewfirel = 0]
+     THEN [condition = MID_OP,condage = 0 | 0.3205];
+IF [cover = YPN][condition = LATE_CL][agewfirel = 0]
+     THEN [condition = LATE_MOD,condage = 0 | 0.5758];
+IF [cover = YPN][condition = LATE_MOD][agewfirel = 0]
+     THEN [condition = LATE_OP,condage = 0 | 0.1803];
+
+/////////////////////////
+// YPN_ASP: yellow pine - aspen
+/////////////////////////
+IF [cover = YPN_ASP][condition = EARLY_ASP|MID_ASP|LATE_CA][agewfireh = 0]
+     THEN [condition = EARLY_ASP,age = 0,condage = 0,stageage=0 | 1];
+
+</wildfire>
+
+// <vegetation_treatments>
+// IF [cover = SMC_M][condition = MID_CL][treat = pfire|rest|grp][agetreat = 0]
+//      THEN [condition = MID_OP][condage = 0];
+// IF [cover = SMC_M][condition = LATE_CL][treat = pfire|rest|grp][agetreat = 0]
+//      THEN [condition = LATE_OP][condage = 0];
+// IF [cover = SMC_X][condition = MID_CL][treat = pfire|rest|grp][agetreat = 0]
+//      THEN [condition = MID_OP][condage = 0];
+// IF [cover = SMC_X][condition = LATE_CL][treat = pfire|rest|grp][agetreat = 0]
+//      THEN [condition = LATE_OP][condage = 0];
+// 
+// </vegetation_treatments>
