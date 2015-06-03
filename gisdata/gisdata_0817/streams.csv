@@ -1,0 +1,5 @@
+streams_id,streams_name,streams_abr
+1,Large (stream order 5 and greater),L
+2,Medium (stream order 3 and 4),M
+3,Small (stream order 1 and 2),S
+99999, Background, B
